@@ -1,9 +1,13 @@
-import react from 'react';
+import Header from './components/Header';
 
 function App() {
   return (
     <div>
-      <h1>Esta es mi pagina principal</h1>
+      <Header 
+        titulo="Registro de Movimientos de Mercancía" 
+        descripcion="Gestion de los inventarios y los despachos tecnológicos del sistema." 
+      />
+      
     </div>
   );
 }
