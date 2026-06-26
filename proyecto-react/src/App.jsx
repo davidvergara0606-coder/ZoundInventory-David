@@ -95,7 +95,7 @@ export default function App() {
         
         <div style={{ flex: 1 }}></div>
 
-        {/* Perfil */}
+        
         <button 
           onClick={() => setVistaActual('perfil')} 
           className={`menu-item ${vistaActual === 'perfil' ? 'activo' : ''}`}
@@ -104,7 +104,7 @@ export default function App() {
             Mi Perfil
         </button>
 
-        {/* BOTÓN CERRAR SESIÓN */}
+        
         <button 
           onClick={manejarCerrarSesion} 
           className="menu-item"
@@ -114,10 +114,10 @@ export default function App() {
         </button>
       </aside>
 
-      {/* CONTENIDO PRINCIPAL */}
+      
       <main className="contenido-principal">
         
-        {/* DASHBOARD */}
+        
         {vistaActual === 'dashboard' && (
           <div>
             <div className="header-dashboard">
@@ -144,7 +144,7 @@ export default function App() {
           </div>
         )}
 
-        {/* SECCIÓN ENTRADAS */}
+        
         {vistaActual === 'entradas' && (
           <div>
             {!seccionInterna ? (
@@ -248,7 +248,7 @@ export default function App() {
           </div>
         )}
 
-        {/* COMPONENTES COMPLEMENTARIOS */}
+        
         {vistaActual === 'inventario' && <InventarioCRUD backToDashboard={irAlDashboard} />}
         {vistaActual === 'reportes' && <Reportes backToDashboard={irAlDashboard} />}
         {vistaActual === 'productos' && <ProductosCatalogo backToDashboard={irAlDashboard} />}

@@ -1,7 +1,9 @@
 import React from 'react';
 
 export default function InventarioTabla({ backToDashboard }) {
-  // Datos mockeados basados en tu diseño de Canva
+  
+  const rolUsuario = localStorage.getItem("id_rol");
+  
   const productos = [
     { codigo: 'P001', nombre: 'Audífonos', categoria: 'Periférico', stock: '150 U', precio: '$ XXX.XXX' },
     { codigo: 'P002', nombre: 'Parlante', categoria: 'Bocina', stock: '120 U', precio: '$ XXX.XXX' },
@@ -27,6 +29,8 @@ export default function InventarioTabla({ backToDashboard }) {
             <th style={{ padding: '15px' }}>Categoría</th>
             <th style={{ padding: '15px' }}>Stock</th>
             <th style={{ padding: '15px' }}>Precio</th>
+            
+            {rolUsuario === "1" && <th style={{ padding: '15px' }}>Acciones</th>}
           </tr>
         </thead>
         <tbody>
@@ -37,6 +41,14 @@ export default function InventarioTabla({ backToDashboard }) {
               <td style={{ padding: '15px' }}>{prod.categoria}</td>
               <td style={{ padding: '15px' }}>{prod.stock}</td>
               <td style={{ padding: '15px' }}>{prod.precio}</td>
+              
+              
+              {rolUsuario === "1" && (
+                <td style={{ padding: '15px' }}>
+                  <button style={{ marginRight: '10px', background: 'none', color: '#00d1b2', border: 'none', cursor: 'pointer' }}>Edit</button>
+                  <button style={{ background: 'none', color: '#ff4d4d', border: 'none', cursor: 'pointer' }}>Del</button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>

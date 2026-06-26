@@ -3,6 +3,9 @@ import React, { useState } from 'react';
 export default function InventarioCRUD({ backToDashboard }) {
   const [vistaInterna, setVistaInterna] = useState('tabla'); 
   const [productoSeleccionado, setProductoSeleccionado] = useState(null);
+  
+  
+  const rolUsuario = localStorage.getItem("id_rol");
 
   const [productos, setProductos] = useState([
     { codigo: 'P001', nombre: 'Audífonos', categoria: 'Periférico', stock: '150 U', precio: '$ XXX.XXX' },
@@ -16,6 +19,7 @@ export default function InventarioCRUD({ backToDashboard }) {
         ← Volver al Panel
       </button>
 
+      
       {vistaInterna === 'tabla' && (
         <>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
@@ -47,88 +51,40 @@ export default function InventarioCRUD({ backToDashboard }) {
           </table>
 
           
-          <div style={{ display: 'flex', gap: '15px' }}>
-            <button onClick={() => setVistaInterna('registrar')} style={{ backgroundColor: '#333', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '20px', cursor: 'pointer' }}>
-              Registrar producto
-            </button>
-            <button onClick={() => { setVistaInterna('editar'); setProductoSeleccionado(productos[1]); }} style={{ backgroundColor: '#333', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '20px', cursor: 'pointer' }}>
-              Editar
-            </button>
-            <button onClick={() => setVistaInterna('eliminar')} style={{ backgroundColor: '#333', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '20px', cursor: 'pointer' }}>
-              Eliminar
-            </button>
-          </div>
+          {rolUsuario === "1" && (
+            <div style={{ display: 'flex', gap: '15px' }}>
+              <button onClick={() => setVistaInterna('registrar')} style={{ backgroundColor: '#333', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '20px', cursor: 'pointer' }}>
+                Registrar producto
+              </button>
+              <button onClick={() => { setVistaInterna('editar'); setProductoSeleccionado(productos[1]); }} style={{ backgroundColor: '#333', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '20px', cursor: 'pointer' }}>
+                Editar
+              </button>
+              <button onClick={() => setVistaInterna('eliminar')} style={{ backgroundColor: '#333', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '20px', cursor: 'pointer' }}>
+                Eliminar
+              </button>
+            </div>
+          )}
         </>
       )}
 
       
-      {vistaInterna === 'registrar' && (
+      {rolUsuario === "1" && vistaInterna === 'registrar' && (
         <div style={{ maxWidth: '500px', margin: '0 auto', backgroundColor: '#222', padding: '30px', borderRadius: '15px' }}>
           <h2 style={{ marginBottom: '20px' }}>Registrar Producto</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <label>Código</label>
-            <input type="text" className="input-field" style={{ padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-            <label>Nombre</label>
-            <input type="text" className="input-field" style={{ padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-            <label>Categoría</label>
-            <input type="text" className="input-field" style={{ padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-            <label>Precio</label>
-            <input type="text" className="input-field" style={{ padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-            <button onClick={() => setVistaInterna('tabla')} style={{ backgroundColor: '#444', color: '#fff', border: 'none', padding: '12px', borderRadius: '20px', cursor: 'pointer', marginTop: '10px' }}>
-              Registrar
-            </button>
-          </div>
-        </div>
-      )}
-
-      
-      {vistaInterna === 'editar' && (
-        <div style={{ maxWidth: '500px', margin: '0 auto', backgroundColor: '#222', padding: '30px', borderRadius: '15px' }}>
-          <h2 style={{ marginBottom: '20px' }}>Editar Producto</h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-            <label>Código</label>
-            <input type="text" defaultValue={productoSeleccionado?.codigo} disabled style={{ padding: '10px', backgroundColor: '#444', border: 'none', borderRadius: '5px', color: '#888' }} />
-            <label>Nombre</label>
-            <input type="text" defaultValue={productoSeleccionado?.nombre} style={{ padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-            <label>Categoría</label>
-            <input type="text" defaultValue={productoSeleccionado?.categoria} style={{ padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-            <label>Precio</label>
-            <input type="text" defaultValue={productoSeleccionado?.precio} style={{ padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-            <button onClick={() => setVistaInterna('tabla')} style={{ backgroundColor: '#444', color: '#fff', border: 'none', padding: '12px', borderRadius: '20px', cursor: 'pointer', marginTop: '10px' }}>
-              Guardar Cambios
-            </button>
-          </div>
-        </div>
-      )}
-
-      
-      {vistaInterna === 'eliminar' && (
-        <>
-          <h2 style={{ marginBottom: '20px' }}>Eliminar Producto</h2>
-          <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#222', borderRadius: '10px', overflow: 'hidden', marginBottom: '20px' }}>
-            <thead>
-              <tr style={{ backgroundColor: '#2d2d2d', textAlign: 'left' }}>
-                <th style={{ padding: '15px' }}>Seleccionar</th>
-                <th style={{ padding: '15px' }}>Código</th>
-                <th style={{ padding: '15px' }}>Nombre</th>
-              </tr>
-            </thead>
-            <tbody>
-              {productos.map((prod) => (
-                <tr key={prod.codigo} style={{ borderBottom: '1px solid #333' }}>
-                  <td style={{ padding: '15px', textAlign: 'center' }}>
-                    <input type="checkbox" defaultChecked={prod.codigo === 'P002'} style={{ transform: 'scale(1.2)' }} />
-                  </td>
-                  <td style={{ padding: '15px' }}>{prod.codigo}</td>
-                  <td style={{ padding: '15px' }}>{prod.nombre}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <button onClick={() => setVistaInterna('tabla')} style={{ backgroundColor: '#d9534f', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '20px', cursor: 'pointer' }}>
-            Eliminar seleccionados
+          
+          <button onClick={() => setVistaInterna('tabla')} style={{ backgroundColor: '#444', color: '#fff', border: 'none', padding: '12px', borderRadius: '20px', cursor: 'pointer', marginTop: '10px' }}>
+            Registrar
           </button>
-        </>
+        </div>
+      )}
+
+      
+      
+      {rolUsuario !== "1" && vistaInterna !== 'tabla' && (
+          <div style={{ textAlign: 'center', marginTop: '50px' }}>
+            <h3>Acceso Restringido</h3>
+            <p>No tienes permisos de administrador para realizar modificaciones.</p>
+          </div>
       )}
     </div>
   );

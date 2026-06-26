@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default function Dashboard({ onLogout, setVistaActual }) {
+  
+  const rolUsuario = localStorage.getItem("id_rol");
+
   return (
     <div className="dashboard-layout" style={{ display: 'flex', backgroundColor: '#1a1a1a', color: '#fff', minHeight: '100vh' }}>
       
@@ -9,15 +12,27 @@ export default function Dashboard({ onLogout, setVistaActual }) {
         <div className="brand" style={{ marginBottom: '40px' }}>
           <h3> Zound Inventory</h3>
         </div>
+        
         <nav style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
           <button onClick={() => setVistaActual('inventario')} className="nav-link"> Inventario</button>
           <button onClick={() => setVistaActual('reportes')} className="nav-link"> Reportes</button>
           <button onClick={() => setVistaActual('productos')} className="nav-link"> Productos</button>
           <button onClick={() => setVistaActual('entradas')} className="nav-link"> Entradas</button>
           <button onClick={() => setVistaActual('salidas')} className="nav-link"> Salidas</button>
+
+          
+          {rolUsuario === "1" && (
+            <button 
+              onClick={() => setVistaActual('registro-trabajadores')} 
+              className="nav-link" 
+              style={{ marginTop: '20px', border: '1px solid #555', color: '#ffcc00' }}
+            > 
+              Registro Trabajadores 
+            </button>
+          )}
         </nav>
       </aside>
-
+      
       
       <main className="main-content" style={{ flex: 1, padding: '40px' }}>
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
@@ -33,7 +48,6 @@ export default function Dashboard({ onLogout, setVistaActual }) {
         <section>
           <h3>Hola, Usuario X</h3>
           <p style={{ color: '#888' }}>Inventario</p>
-          
           
           <div className="cards-grid" style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
             <div className="action-card" onClick={() => setVistaActual('inventario')}>

@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default function PerfilUsuario({ backToDashboard }) {
+
+  const rolUsuario = localStorage.getItem("id_rol");
+
   return (
     <div style={{ padding: '40px', backgroundColor: '#1a1a1a', color: '#fff', minHeight: '100vh' }}>
       <button onClick={backToDashboard} style={{ background: 'none', color: '#aaa', border: 'none', cursor: 'pointer', marginBottom: '20px' }}>
@@ -9,7 +12,7 @@ export default function PerfilUsuario({ backToDashboard }) {
 
       <div style={{ maxWidth: '500px', margin: '0 auto', backgroundColor: '#222', padding: '30px', borderRadius: '15px', position: 'relative' }}>
         
-        {/* Botón de cierre o retroceso superior derecho como el de tus diagramas */}
+        
         <button 
           onClick={backToDashboard}
           style={{ position: 'absolute', top: '20px', right: '20px', background: '#333', color: '#fff', border: 'none', borderRadius: '50%', width: '30px', height: '30px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 
 export default function Reportes({ backToDashboard }) {
+
+  const rolUsuario = localStorage.getItem("id_rol");
+
   const [subTipoReporte, setSubTipoReporte] = useState('stock');
+  
 
   const datosReporte = {
     stock: [

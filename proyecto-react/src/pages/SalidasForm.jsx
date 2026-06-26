@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default function SalidasForm({ backToDashboard }) {
+
+  const rolUsuario = localStorage.getItem("id_rol");
+
   return (
     <div style={{ padding: '40px', backgroundColor: '#1a1a1a', color: '#fff', minHeight: '100vh' }}>
       <button onClick={backToDashboard} style={{ background: 'none', color: '#aaa', border: 'none', cursor: 'pointer', marginBottom: '20px' }}>

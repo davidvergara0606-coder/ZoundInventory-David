@@ -1,42 +1,54 @@
 import React from 'react';
 
-export default function EntradasForm({ backToDashboard }) {
+export default function AlertasStock({ backToDashboard }) {
+  
+  const rolUsuario = localStorage.getItem("id_rol");
+
+  const alertas = [
+    { codigo: 'P035', nombre: 'JBL Charge 5', categoria: 'Parlante', stock: '10 U' },
+    { codigo: 'P022', nombre: 'Sony WF-1000XM5', categoria: 'Periférico', stock: '17 U' },
+    { codigo: 'P005', nombre: 'Marshall Acton III', categoria: 'Parlante', stock: '19 U' },
+  ];
+
   return (
     <div style={{ padding: '40px', backgroundColor: '#1a1a1a', color: '#fff', minHeight: '100vh' }}>
       <button onClick={backToDashboard} style={{ background: 'none', color: '#aaa', border: 'none', cursor: 'pointer', marginBottom: '20px' }}>
         ← Volver al Panel
       </button>
 
-      <div style={{ maxWidth: '500px', margin: '0 auto', backgroundColor: '#222', padding: '30px', borderRadius: '15px' }}>
-        <h2 style={{ marginBottom: '5px' }}>Entradas</h2>
-        <p style={{ color: '#888', fontSize: '14px', marginBottom: '25px' }}>Registrar entrada de producto al inventario</p>
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <div>
-            <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px' }}>Código de barra</label>
-            <input type="text" style={{ width: '100%', padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-          </div>
+      <h2 style={{ marginBottom: '20px' }}> Alertas de Stock</h2>
 
-          <div>
-            <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px' }}>Nombre</label>
-            <input type="text" style={{ width: '100%', padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-          </div>
-
-          <div>
-            <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px' }}>Cantidad de entrada</label>
-            <input type="number" style={{ width: '100%', padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-          </div>
-
-          <div>
-            <label style={{ display: 'block', marginBottom: '5px', fontSize: '14px' }}>Precio total de compra</label>
-            <input type="text" style={{ width: '100%', padding: '10px', backgroundColor: '#333', border: 'none', borderRadius: '5px', color: '#fff' }} />
-          </div>
-
-          <button style={{ backgroundColor: '#fff', color: '#000', border: 'none', padding: '12px', borderRadius: '20px', cursor: 'pointer', fontWeight: 'bold', marginTop: '10px' }}>
-            Registrar entrada
-          </button>
-        </div>
-      </div>
+      <table style={{ width: '100%', borderCollapse: 'collapse', backgroundColor: '#222', borderRadius: '10px', overflow: 'hidden' }}>
+        <thead>
+          <tr style={{ backgroundColor: '#2d2d2d', textAlign: 'left' }}>
+            <th style={{ padding: '15px' }}>Código</th>
+            <th style={{ padding: '15px' }}>Nombre</th>
+            <th style={{ padding: '15px' }}>Categoría</th>
+            <th style={{ padding: '15px' }}>Stock</th>
+            
+            {rolUsuario === "1" && <th style={{ padding: '15px' }}>Acciones</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {alertas.map((item) => (
+            <tr key={item.codigo} style={{ borderBottom: '1px solid #333' }}>
+              <td style={{ padding: '15px' }}>{item.codigo}</td>
+              <td style={{ padding: '15px' }}>{item.nombre}</td>
+              <td style={{ padding: '15px' }}>{item.categoria}</td>
+              <td style={{ padding: '15px', color: '#ff4d4d', fontWeight: 'bold' }}>{item.stock}</td>
+              
+              
+              {rolUsuario === "1" && (
+                <td style={{ padding: '15px' }}>
+                  <button style={{ background: '#444', color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '5px', cursor: 'pointer' }}>
+                    Ajustar
+                  </button>
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

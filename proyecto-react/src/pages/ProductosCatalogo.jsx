@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default function ProductosCatalogo({ backToDashboard }) {
+
+  const rolUsuario = localStorage.getItem("id_rol");
+
   const marcasYModelos = [
     'JBL PartyBox 310',
     'JBL Live 660NC (diadema con cancelación de ruido)',

@@ -1,6 +1,9 @@
 import React from 'react';
 
 export default function AlertasStock({ backToDashboard }) {
+  
+  const rolUsuario = localStorage.getItem("id_rol");
+
   const alertas = [
     { codigo: 'P035', nombre: 'JBL Charge 5', categoria: 'Parlante', stock: '10 U' },
     { codigo: 'P022', nombre: 'Sony WF-1000XM5', categoria: 'Periférico', stock: '17 U' },
@@ -22,6 +25,8 @@ export default function AlertasStock({ backToDashboard }) {
             <th style={{ padding: '15px' }}>Nombre</th>
             <th style={{ padding: '15px' }}>Categoría</th>
             <th style={{ padding: '15px' }}>Stock</th>
+            
+            {rolUsuario === "1" && <th style={{ padding: '15px' }}>Acciones</th>}
           </tr>
         </thead>
         <tbody>
@@ -31,6 +36,15 @@ export default function AlertasStock({ backToDashboard }) {
               <td style={{ padding: '15px' }}>{item.nombre}</td>
               <td style={{ padding: '15px' }}>{item.categoria}</td>
               <td style={{ padding: '15px', color: '#ff4d4d', fontWeight: 'bold' }}>{item.stock}</td>
+              
+              
+              {rolUsuario === "1" && (
+                <td style={{ padding: '15px' }}>
+                  <button style={{ background: '#444', color: '#fff', border: 'none', padding: '5px 10px', borderRadius: '5px', cursor: 'pointer' }}>
+                    Ajustar
+                  </button>
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
