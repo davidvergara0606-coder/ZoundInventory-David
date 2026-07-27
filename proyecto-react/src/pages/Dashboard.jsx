@@ -1,73 +1,61 @@
 import React from 'react';
 
-export default function Dashboard({ onLogout, setVistaActual }) {
-  
+export default function Dashboard({ onLogout, onNavigate }) {
   const rolUsuario = localStorage.getItem("id_rol");
+  const usuarioActual = localStorage.getItem("usuario") || "Administrador";
 
   return (
-    <div className="dashboard-layout" style={{ display: 'flex', backgroundColor: '#1a1a1a', color: '#fff', minHeight: '100vh' }}>
-      
-      
-      <aside className="sidebar" style={{ width: '250px', backgroundColor: '#111', padding: '20px' }}>
-        <div className="brand" style={{ marginBottom: '40px' }}>
-          <h3> Zound Inventory</h3>
+    <div style={{ padding: '40px', backgroundColor: '#1a1a1a', color: '#fff', minHeight: '100vh', fontFamily: 'sans-serif' }}>
+      <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
+        <div>
+          <h2 style={{ margin: 0, fontWeight: 'bold', letterSpacing: '1px' }}>Panel de control (Administrador)</h2>
+          <p style={{ color: '#888', margin: '5px 0 0 0', fontSize: '14px' }}>Gestión central de ZoundInventory - Harvic</p>
         </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <span style={{ fontSize: '14px', color: '#aaa' }}>H⌁rvic®</span>
+        </div>
+      </header>
+
+      <section>
+        <h3 style={{ fontWeight: 'normal', color: '#ccc' }}>Hola, <strong style={{ color: '#fff' }}>{usuarioActual}</strong></h3>
+        <p style={{ color: '#888', fontSize: '14px' }}>Acceso completo al inventario y funciones administrativas</p>
         
-        <nav style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-          <button onClick={() => setVistaActual('inventario')} className="nav-link"> Inventario</button>
-          <button onClick={() => setVistaActual('reportes')} className="nav-link"> Reportes</button>
-          <button onClick={() => setVistaActual('productos')} className="nav-link"> Productos</button>
-          <button onClick={() => setVistaActual('entradas')} className="nav-link"> Entradas</button>
-          <button onClick={() => setVistaActual('salidas')} className="nav-link"> Salidas</button>
-          <button onClick={() => setVistaActual('inventarioCRUD')} className="nav-link"> Inventario CRUD</button>
-          <button onClick={() => setVistaActual('crearUsuario')} className="nav-link"> Crear Usuario</button>
-
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '20px', marginTop: '25px' }}>
           
-          {rolUsuario === "1" && (
-            <button 
-              onClick={() => setVistaActual('registro-trabajadores')} 
-              className="nav-link" 
-              style={{ marginTop: '20px', border: '1px solid #555', color: '#ffcc00' }}
-            > 
-              Registro Trabajadores 
-            </button>
-          )}
-        </nav>
-      </aside>
-      
-      
-      <main className="main-content" style={{ flex: 1, padding: '40px' }}>
-        <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '30px' }}>
-          <h2>Panel de control</h2>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-            <span>H⌁rvic®</span>
-            <button onClick={onLogout} className="btn-logout" style={{ background: '#333', color: '#fff', border: 'none', padding: '8px 12px', borderRadius: '20px', cursor: 'pointer' }}>
-              Cerrar sesión
-            </button>
+          <div 
+            onClick={() => onNavigate('inventario')}
+            style={{ backgroundColor: '#222', border: '1px solid #333', padding: '25px', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' }}
+          >
+            <h4 style={{ margin: '0 0 8px 0', color: '#fff' }}>Ver Inventario</h4>
+            <p style={{ margin: 0, fontSize: '13px', color: '#888' }}>Revisa la tabla general de productos.</p>
           </div>
-        </header>
 
-        <section>
-          <h3>Hola, Usuario X</h3>
-          <p style={{ color: '#888' }}>Inventario</p>
-          
-          <div className="cards-grid" style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
-            <div className="action-card" onClick={() => setVistaActual('inventario')}>
-              <div className="icon"></div>
-              <span>Ver inventario</span>
-            </div>
-            <div className="action-card">
-              <div className="icon"></div>
-              <span>Modificar inventario</span>
-            </div>
-            <div className="action-card">
-              <div className="icon"></div>
-              <span>Descargar inventario</span>
-            </div>
+          <div 
+            onClick={() => onNavigate('inventario')}
+            style={{ backgroundColor: '#222', border: '1px solid #333', padding: '25px', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' }}
+          >
+            <h4 style={{ margin: '0 0 8px 0', color: '#fff' }}>Modificar Inventario</h4>
+            <p style={{ margin: 0, fontSize: '13px', color: '#888' }}>Gestión CRUD de entradas y salidas.</p>
           </div>
-        </section>
-      </main>
 
+          <div 
+            onClick={() => onNavigate('reportes')}
+            style={{ backgroundColor: '#222', border: '1px solid #333', padding: '25px', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' }}
+          >
+            <h4 style={{ margin: '0 0 8px 0', color: '#fff' }}>Reportes de Stock</h4>
+            <p style={{ margin: 0, fontSize: '13px', color: '#888' }}>Descarga informes de existencias.</p>
+          </div>
+
+          <div 
+            onClick={() => onNavigate('crear-usuario')}
+            style={{ backgroundColor: '#222', border: '1px solid #4da6ff', padding: '25px', borderRadius: '12px', cursor: 'pointer', transition: '0.2s' }}
+          >
+            <h4 style={{ margin: '0 0 8px 0', color: '#4da6ff' }}>Crear Usuario</h4>
+            <p style={{ margin: 0, fontSize: '13px', color: '#888' }}>Da de alta a nuevos bodegueros o admins.</p>
+          </div>
+
+        </div>
+      </section>
     </div>
   );
 }
