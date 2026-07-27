@@ -9,7 +9,7 @@ export default function Login({ onLogin }) {
 
   const [documento, setDocumento] = useState('');
   const [password, setPassword] = useState('');
-
+ 
 
   const handleLogin = async (e) => {
     e.preventDefault(); 

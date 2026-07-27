@@ -19,8 +19,6 @@ export default function Dashboard({ onLogout, setVistaActual }) {
           <button onClick={() => setVistaActual('productos')} className="nav-link"> Productos</button>
           <button onClick={() => setVistaActual('entradas')} className="nav-link"> Entradas</button>
           <button onClick={() => setVistaActual('salidas')} className="nav-link"> Salidas</button>
-          <button onClick={() => setVistaActual('inventarioCRUD')} className="nav-link"> Inventario CRUD</button>
-          <button onClick={() => setVistaActual('crearUsuario')} className="nav-link"> Crear Usuario</button>
 
           
           {rolUsuario === "1" && (
