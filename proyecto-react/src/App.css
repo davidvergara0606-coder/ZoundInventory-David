@@ -1,184 +1,210 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+.app-contenedor {
+  display: flex;
+  background-color: #131313; 
+  color: #FFFFFF;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
 }
 
-.hero {
-  position: relative;
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
+.sidebar {
+  width: 260px;
+  background-color: #1A1A1A; 
+  padding: 30px 20px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  border-right: 1px solid #252525;
 }
 
-#next-steps {
+.logo-zound {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 5px;
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
-}
-
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
+  align-items: center;
   gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.subtitulo-logo {
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
 }
 
-.ticks {
-  position: relative;
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  border-radius: 25px; 
+  color: #AAAAAA;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.menu-item:hover {
+  background-color: #252525;
+  color: #FFFFFF;
+}
+
+.menu-item.activo {
+  background-color: #2C2C2C; 
+  color: #FFFFFF;
+}
+
+
+.contenido-principal {
+  flex: 1;
+  padding: '40px';
+  background-color: #131313;
+}
+
+.header-dashboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.logo-harvic {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.menu-hamburguesa {
+  font-size: 18px;
+  color: #888;
+}
+
+
+.grid-tarjetas {
+  display: flex;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.tarjeta-accion {
+  background-color: #1A1A1A;
+  border-radius: 20px;
+  padding: 40px 30px;
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #252525;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.tarjeta-accion:hover {
+  transform: translateY(-3px);
+  background-color: #222222;
+}
+
+.icono-tarjeta {
+  font-size: 40px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+
+.tabla-contenedor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.buscar-input {
+  padding: '10px 20px';
+  border-radius: 20px;
+  border: 1px solid #333;
+  background-color: #1A1A1A;
+  color: #fff;
+  width: 250px;
+}
+
+.tabla-zound {
   width: 100%;
+  border-collapse: collapse;
+  background-color: #1A1A1A;
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+.tabla-zound th {
+  background-color: #252525;
+  text-align: left;
+  padding: 15px;
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
-  }
+.tabla-zound td {
+  padding: 15px;
+  border-bottom: 1px solid #252525;
+}
+
+.texto-opaco {
+  color: #aaa;
+}
+
+.icono-descarga {
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn-atras {
+  background: none;
+  color: #aaa;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.login-card {
+  background-color: #1A1A1A;
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #252525;
+  width: 100%;
+  max-width: 360px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 15px;
+  background-color: #2C2C2C;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #555;
+}
+
+.btn-primary {
+  background-color: #FFFFFF;
+  color: #000000;
+  border: none;
+  padding: 12px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #e0e0e0;
 }
